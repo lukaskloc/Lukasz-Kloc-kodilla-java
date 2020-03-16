@@ -13,4 +13,5 @@ repositories {
 
 dependencies {
     testImplementation('junit:junit:4.13')
+    testImplementation(group: 'org.mockito', name: 'mockito-core', version: '3.3.3')
 }
