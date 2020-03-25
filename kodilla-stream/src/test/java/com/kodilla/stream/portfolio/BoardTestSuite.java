@@ -3,7 +3,6 @@ package com.kodilla.stream.portfolio;
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.jws.soap.SOAPBinding;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -125,7 +124,7 @@ public class BoardTestSuite {
         long longTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
-                .map(t -> t.getCreated())
+                .map(task -> task.getCreated())
                 .filter(d -> d.compareTo(LocalDate.now().minusDays(10)) <= 0)
                 .count();
 

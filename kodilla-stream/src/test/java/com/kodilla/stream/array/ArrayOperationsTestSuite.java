@@ -1,10 +1,8 @@
 package com.kodilla.stream.array;
 
-import javafx.beans.binding.When;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 
 public class ArrayOperationsTestSuite {
     @Test
