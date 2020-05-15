@@ -1,6 +1,5 @@
 package com.kodilla.patterns.strategy.social;
 
-import com.kodilla.patterns.strategy.social.publishers.FacebookPublisher;
 import com.kodilla.patterns.strategy.social.publishers.SnapchatPublisher;
 import org.junit.Assert;
 import org.junit.Test;
