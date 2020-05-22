@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'com.kodilla'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation('junit:junit:4.13')
+    testImplementation(group: 'org.mockito', name: 'mockito-core', version: '3.3.3')
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    testImplementation(group: 'mysql', name: 'mysql-connector-java', version: '8.0.20')
+}
