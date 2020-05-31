@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany() {
@@ -58,6 +62,61 @@ public class CompanyDaoTestSuite {
             companyDao.deleteById(greyMatterId);
         } catch (Exception e) {
             //do nothing
+        }
+    }
+
+    @Test
+    public void testFindingEmployeesByName() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        Employee lindaNorman = new Employee("Linda", "Norman");
+        Employee lindaWozniak = new Employee("Linda", "Wozniak");
+
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+        employeeDao.save(lindaNorman);
+        employeeDao.save(lindaWozniak);
+
+        //When
+        List<Employee> employeesWithNameLinda = employeeDao.retrieveEmployeesWithSpecificName("Linda");
+
+        //Then
+        try {
+            Assert.assertEquals(3, employeesWithNameLinda.size());
+        } finally {
+            //CleanUp
+            employeeDao.deleteAll();
+        }
+    }
+
+    @Test
+    public void testFindingCompaniesByTheBeginningOfTheName() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+        Company greyOrPink = new Company("Grey Or Pink");
+        Company greyLivesMatter = new Company("Grey Lives Matter");
+
+
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+        companyDao.save(greyOrPink);
+        companyDao.save(greyLivesMatter);
+
+        //When
+        List<Company> companiesStartingWithGre = companyDao.retrieveCompaniesWithNameStartingWith("gre%");
+
+        //Then
+        try {
+            Assert.assertEquals(3, companiesStartingWithGre.size());
+        } finally {
+            //CleanUp
+            companyDao.deleteAll();
         }
     }
 }

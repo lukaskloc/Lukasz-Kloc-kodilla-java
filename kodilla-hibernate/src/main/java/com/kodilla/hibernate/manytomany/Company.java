@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Company.retrieveCompaniesWithNameStartingWith",
+        query = "FROM Company WHERE name LIKE :FIRSTTHREELETTERS"
+)
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -48,5 +53,12 @@ public class Company {
 
     private void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
