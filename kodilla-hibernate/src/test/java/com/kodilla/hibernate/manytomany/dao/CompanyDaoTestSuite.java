@@ -109,7 +109,7 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyLivesMatter);
 
         //When
-        List<Company> companiesStartingWithGre = companyDao.retrieveCompaniesWithNameStartingWith("gre%");
+        List<Company> companiesStartingWithGre = companyDao.retrieveCompaniesWithNameStartingWith("gre");
 
         //Then
         try {

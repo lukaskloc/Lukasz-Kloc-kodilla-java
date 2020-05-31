@@ -7,7 +7,7 @@ import java.util.List;
 
 @NamedQuery(
         name = "Company.retrieveCompaniesWithNameStartingWith",
-        query = "FROM Company WHERE name LIKE :FIRSTTHREELETTERS"
+        query = "FROM Company WHERE SUBSTRING(name, 1, 3) = :FIRSTTHREELETTERS"
 )
 
 @Entity
